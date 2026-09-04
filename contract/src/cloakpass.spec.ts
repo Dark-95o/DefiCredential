@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Unit specifications for CloakPass smart contract and Merkle membership circuits.
+ * Validates anonymous pass generation, nullifier replay defense, and admin allowlists.
+ */
 import { describe, it, expect, beforeEach } from 'vitest';
 import { CloakPassContract, SimpleMerkleTree, hashValues, pad32 } from './cloakpass.js';
 
