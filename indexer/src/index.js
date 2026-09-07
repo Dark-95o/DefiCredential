@@ -1,3 +1,8 @@
+// Validation guard for incoming block event payloads
+function isValidEventPayload(payload) {
+  return payload && typeof payload === 'object' && typeof payload.type === 'string';
+}
+
 import express from 'express';
 import cors from 'cors';
 
