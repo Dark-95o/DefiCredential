@@ -1,3 +1,4 @@
+// Memoized root dashboard controller for CloakPass dApp
 import { useState, useEffect } from 'react';
 import { Shield, Wallet, Info, Sparkles, RefreshCw, Cpu, ShieldCheck, Lock, Server } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
