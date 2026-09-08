@@ -217,4 +217,9 @@ describe('CloakPass Contract & Circuit Unit Tests', () => {
         const eventId = hashValues(['session-111']);
         expect(() => contract.prove_membership(eventId)).toThrow('Invalid Merkle proof');
     });
+
+    // Boundary check for pass lifetime parameters
+    it('should validate non-empty admin public keys upon initialization', () => {
+        expect(() => new CloakPassContract('')).toThrow('Admin public key cannot be empty');
+    });
 });

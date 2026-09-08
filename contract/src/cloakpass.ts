@@ -196,6 +196,7 @@ export class CloakPassContract {
     private witnesses!: CloakPassWitnesses;
 
     constructor(admin_pk: string) {
+        if (!admin_pk) throw new Error('Admin public key cannot be empty');
         this.admin_pubkey = admin_pk;
         this.commitments = new SimpleMerkleTree(4);
         this.access_granted_events = new Map<string, boolean>();
