@@ -56,6 +56,23 @@ CloakPass decouples allowlist eligibility from user identity using Midnight's du
 ```
 
 ### Core Architecture Components
+
+### Verification Sequence
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as Member (Client)
+    participant UI as CloakPass UI
+    participant Proof as Proof Generator
+    participant Contract as CloakPass Compact Contract
+    User->>UI: Input Secret & Destination
+    UI->>Proof: Generate Merkle Proof & Nullifier
+    Proof-->>UI: Proof Object
+    UI->>Contract: submit_access_proof(nullifier, proof)
+    Contract->>Contract: Assert nullifier unused & verify root
+    Contract-->>UI: accessGranted Event
+```
+
 - **Shielded Registration**: The administrator hashes each member's private passkey off-chain to generate a unique commitment leaf:  
   $$\text{Commitment} = \text{persistentHash}([\text{pad32}(\text{"cloakpass:commitment:v1"}), \text{secret}])$$  
   This commitment is inserted into an on-chain Merkle tree. Neither the member's identity nor the secret is ever exposed.
