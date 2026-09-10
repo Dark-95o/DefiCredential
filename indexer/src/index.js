@@ -13,6 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // In-memory database of captured accessGranted events
+// Maximum buffered event log threshold
+const MAX_BUFFERED_EVENTS = 500;
+
 const db = {
   events: [
     {
