@@ -52,4 +52,10 @@ describe('CloakPass Frontend Integration Tests', () => {
     const adminVaultHeader = screen.getByRole('heading', { name: /Admin Vault/i });
     expect(adminVaultHeader).toBeDefined();
   });
+
+  it('should display the terminal logs panel and stream status', () => {
+    render(<App />);
+    const terminalLogs = screen.getAllByText(/Ledger Event Stream/i);
+    expect(terminalLogs.length).toBeGreaterThan(0);
+  });
 });
