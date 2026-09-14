@@ -162,3 +162,10 @@ Indexer endpoints will be active on [http://localhost:4000/api/events](http://lo
 <img width="1826" height="856" alt="Screenshot 2026-08-20 143621" src="https://github.com/user-attachments/assets/b5a6c360-8c2a-4bbc-9678-302dbeca2636" />
 
 
+
+## Contributing
+Contributions are welcome! Please follow these steps:
+1. Fork the repository and create your feature branch: `git checkout -b feature/amazing-feature`.
+2. Ensure test coverage by running `npm test`.
+3. Commit changes with conventional commit semantics (`feat:`, `fix:`, `docs:`, etc.).
+4. Open a Pull Request for review.
