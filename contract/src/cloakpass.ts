@@ -1,3 +1,6 @@
+/** Maximum validity duration limit in Midnight blocks */
+export const MAX_PASS_DURATION_BLOCKS = 525600;
+
 // Pure-JavaScript synchronous SHA-256 implementation (zero dependencies, browser & node compatible)
 export function sha256(ascii: string): string {
     function rightRotate(value: number, amount: number) {
