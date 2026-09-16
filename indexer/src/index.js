@@ -1,3 +1,8 @@
+// Graceful termination and signal handler
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('[Indexer] Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 // Validation guard for incoming block event payloads
 function isValidEventPayload(payload) {
   return payload && typeof payload === 'object' && typeof payload.type === 'string';
