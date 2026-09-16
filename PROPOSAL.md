@@ -127,6 +127,10 @@ This section addresses the technical feasibility, architectural scaling, constra
 - No sensitive user credentials leave the user's device, ensuring complete zero-knowledge isolation.
 
 #### 4. Security & Trust Assumptions
+### Cryptographic Assumptions
+- **Collision Resistance**: Merkle membership proofs rely on standard cryptographic hash preimage and second-preimage resistance.
+- **ZK Soundness**: Proofs generated under Groth16 / Plonk schemes guarantee zero information leakage regarding member identity.
+
 - **Trustless Verifier**: Midnight validator nodes verify proofs strictly through zero-knowledge mathematics; no trusted third-party relayer or centralized oracle is required.
 - **Universal Reference String (SRS)**: Utilizes Midnight's transparent, universal structured reference string, eliminating the need for application-specific trusted setup ceremonies.
 - **Admin Decentralization**: By Level 6, single-admin authority will transition to a Midnight multi-signature threshold contract or decentralized governance module.
