@@ -22,3 +22,12 @@ button:focus-visible, input:focus-visible {
   outline: 2px solid #818cf8;
   outline-offset: 2px;
 }
+
+/* Custom smooth scrollbar for terminal telemetry stream */
+.terminal-stream::-webkit-scrollbar {
+  width: 6px;
+}
+.terminal-stream::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
