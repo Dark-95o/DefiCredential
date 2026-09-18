@@ -1,3 +1,4 @@
+// Terminal telemetry observer for on-chain proof verification stream
 import React, { useState } from 'react';
 import { Terminal as TerminalIcon, ChevronRight, Download, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
