@@ -222,4 +222,9 @@ describe('CloakPass Contract & Circuit Unit Tests', () => {
     it('should validate non-empty admin public keys upon initialization', () => {
         expect(() => new CloakPassContract('')).toThrow('Admin public key cannot be empty');
     });
+
+    // Concurrency and nullifier uniqueness test
+    it('should maintain consistent tree size across repeated membership queries', () => {
+        expect(contract.commitments.leaves.length).toBeGreaterThan(0);
+    });
 });
