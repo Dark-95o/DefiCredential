@@ -31,3 +31,8 @@ button:focus-visible, input:focus-visible {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
 }
+
+/* Smooth transition durations for modal dialogues and badges */
+.dialog-overlay-fade {
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
