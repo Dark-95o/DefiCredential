@@ -11,3 +11,6 @@ Compact-based smart contract implementation for decentralized, zero-knowledge an
 ```bash
 npm run compile
 ```
+
+## Artifact Generation
+Running the compiler generates the TypeScript runtime bindings and witness interfaces under `contract/build/` and exports verification circuits.
