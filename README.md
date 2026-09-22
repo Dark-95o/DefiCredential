@@ -1,5 +1,5 @@
 # CloakPass: Shielded Zero-Knowledge Gatekeeper
-
+Demo Link : [https://defi-credential-indexer.vercel.app/](https://defi-credential-indexer.vercel.app/)
 [![CloakPass CI/CD](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml/badge.svg)](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml)
 [![Midnight Testnet](https://img.shields.io/badge/Midnight-Preview%20Testnet-f59e0b?logo=blockchain&logoColor=white)](https://testnet.midnight.network)
 [![Compact Language](https://img.shields.io/badge/Smart%20Contract-Compact%20v0.14.2-ef4444)](contract/src/cloakpass.compact)
