@@ -169,3 +169,11 @@ Contributions are welcome! Please follow these steps:
 2. Ensure test coverage by running `npm test`.
 3. Commit changes with conventional commit semantics (`feat:`, `fix:`, `docs:`, etc.).
 4. Open a Pull Request for review.
+
+## Architecture Diagram
+```
++------------------+       +-------------------+       +-----------------------+
+|  React Frontend  | ----> |  Compact Circuit  | ----> |  Midnight Testnet Ledger|
+|  (User & Admin)  |       |  (Zero Knowledge) |       |  (Nullifiers & Merkle)|
++------------------+       +-------------------+       +-----------------------+
+```
