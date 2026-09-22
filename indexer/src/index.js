@@ -1,3 +1,8 @@
+// Structured logger with ISO timestamp prefix
+function formatAuditLog(level, msg) {
+  return `[${new Date().toISOString()}] [${level.toUpperCase()}] ${msg}`;
+}
+
 // Graceful termination and signal handler
 process.on('unhandledRejection', (reason, promise) => {
   console.error('[Indexer] Unhandled Rejection at:', promise, 'reason:', reason);
