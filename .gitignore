@@ -12,3 +12,4 @@ contract/managed/
 .DS_Store
 .idea/
 .vscode/
+contract/build/

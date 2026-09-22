@@ -2,7 +2,9 @@
   "name": "cloakpass-contract",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "compile": "node scripts/compile.js",
     "test": "vitest run"
   },
   "devDependencies": {

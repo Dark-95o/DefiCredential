@@ -23,5 +23,14 @@ jobs:
     - name: Install root dependencies
       run: npm install
 
+    - name: Compile Compact Smart Contract (compactc)
+      run: npm run compile --workspace=contract
+
     - name: Run contract spec tests (Vitest)
       run: npm test --workspace=contract
+
+    - name: Run UI test suite (Vitest)
+      run: npm test --workspace=ui
+
+    - name: Build frontend application (Vite)
+      run: npm run build --workspace=ui

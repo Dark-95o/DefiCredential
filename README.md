@@ -1,5 +1,10 @@
 # CloakPass: Shielded Zero-Knowledge Gatekeeper
 
+[![CloakPass CI/CD](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml/badge.svg)](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml)
+[![Midnight Testnet](https://img.shields.io/badge/Midnight-Preview%20Testnet-f59e0b?logo=blockchain&logoColor=white)](https://testnet.midnight.network)
+[![Compact Language](https://img.shields.io/badge/Smart%20Contract-Compact%20v0.14.2-ef4444)](contract/src/cloakpass.compact)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 CloakPass is a decentralized, privacy-preserving gatekeeper application (dApp) built on the Midnight blockchain. It allows users to prove membership in a private allowlist using Zero-Knowledge proofs without disclosing their wallet address, identity, or transaction history.
 
 ---
@@ -111,20 +116,26 @@ npm install
 
 ### Running the Sub-Systems
 
-#### 1. Contract & UI Tests (Vitest)
+#### 1. Compile Compact Smart Contract
+Compile the Compact circuit definition into ZKIR intermediate representation artifacts:
+```bash
+npm run compile
+```
+
+#### 2. Contract & UI Tests (Vitest)
 Verify the smart contract logic, ZK witness bindings, and UI integration:
 ```bash
 npm run test
 ```
 
-#### 2. Run the Frontend (Vite)
+#### 3. Run the Frontend (Vite)
 Launch the Red & Yellow Glassmorphism React web app:
 ```bash
 npm run dev:ui
 ```
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-#### 3. Run the Indexer (Express)
+#### 4. Run the Indexer (Express)
 Launch the event monitoring API:
 ```bash
 npm run start:indexer
@@ -140,7 +151,7 @@ Indexer endpoints will be active on [http://localhost:4000/api/events](http://lo
 <img width="1825" height="1072" alt="Screenshot 2026-08-31 145051" src="https://github.com/user-attachments/assets/fa104db8-c8f0-4ff2-910a-bbc13a82ef8c" />
 
 ### Demo Video Link
-[Video Link:](https://drive.google.com/file/d/1rIf_DrDVXjk1ntwC4g5GYUOBtqHjC3-R/view?usp=sharing)
+[Demo Video Link](https://drive.google.com/file/d/1rIf_DrDVXjk1ntwC4g5GYUOBtqHjC3-R/view?usp=sharing)
 
 ### Automated Test Suite (Vitest)
 *Passing comprehensive test cases verifying allowlist boundaries and privacy integrity.*
