@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "compile": "node scripts/compile.js",
+    "build": "node scripts/compile.js",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
