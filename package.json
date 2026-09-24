@@ -7,7 +7,7 @@
     "ui"
   ],
   "scripts": {
-    "build": "npm run build --workspace=ui",
+    "build": "npm run build --workspace=ui && node -e \"const fs=require('fs'); if(fs.existsSync('ui/dist')){fs.cpSync('ui/dist','dist',{recursive:true});fs.cpSync('ui/dist','indexer/dist',{recursive:true});}\"",
     "compile": "npm run compile --workspace=contract",
     "compile:contract": "npm run compile --workspace=contract",
     "test": "npm test --workspace=contract && npm test --workspace=ui",
