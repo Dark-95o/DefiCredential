@@ -7,6 +7,7 @@
     "ui"
   ],
   "scripts": {
+    "build": "npm run build --workspace=ui",
     "compile": "npm run compile --workspace=contract",
     "compile:contract": "npm run compile --workspace=contract",
     "test": "npm test --workspace=contract && npm test --workspace=ui",
