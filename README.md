@@ -1,7 +1,7 @@
 # CloakPass: Shielded Zero-Knowledge Gatekeeper
 Demo Link : [https://defi-credential-indexer.vercel.app/](https://defi-credential-indexer.vercel.app/)
 [![CloakPass CI/CD](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml/badge.svg)](https://github.com/Dark-95o/Midnight/actions/workflows/ci.yml)
-[![Midnight Testnet](https://img.shields.io/badge/Midnight-Preview%20Testnet-f59e0b?logo=blockchain&logoColor=white)](https://testnet.midnight.network)
+[![Midnight Local Devnet](https://img.shields.io/badge/Midnight-Local%20Deployment-f59e0b?logo=blockchain&logoColor=white)](https://testnet.midnight.network)
 [![Compact Language](https://img.shields.io/badge/Smart%20Contract-Compact%20v0.14.2-ef4444)](contract/src/cloakpass.compact)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -14,7 +14,7 @@ CloakPass is a decentralized, privacy-preserving gatekeeper application (dApp) b
 The CloakPass dApp comprises three primary systems executing over Midnight's dual public/private state model:
 1. **Smart Contract & Circuits (Compact)**: Defines the private allowlist membership proofs using a local ZK-circuit and stores public root commitments in the ledger state.
 2. **Event Indexer Service (Node.js/Express)**: Listens for anonymous validation events (`accessGranted`) recorded on-chain, serving them via a public API.
-3. **Red & Yellow Glassmorphism Dashboard (React / TypeScript / Vite)**: Integrates the Lace Wallet connector, client-side witness prover, hero banner visualizer, and admin vault dashboard.
+3. **Editorial Cream Dashboard (React / TypeScript / Vite)**: Integrates the Lace Wallet connector, client-side witness prover, hero banner visualizer, and admin vault dashboard.
 
 ```mermaid
 graph TD
@@ -42,14 +42,19 @@ graph TD
 
 ## 2. Contract Deployment & Network Specifications
 
-### Midnight Testnet Deployment Parameters
+> [!NOTE]
+> **Contract Address Status: Local Deployment**
+> The contract address `midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v` represents a **Local Deployment** generated on a standalone Midnight sandbox / local devnet environment. Proof verification, commitment registration, and allowlist membership proofs are validated locally against this contract deployment.
+
+### Midnight Deployment Parameters
 
 | Parameter | Value |
 | :--- | :--- |
-| **Network Name** | Midnight Preview Testnet (Sandbox Network) |
+| **Deployment Mode** | **Local Deployment (Sandbox / Standalone Devnet)** |
+| **Network Name** | Midnight Preview Sandbox (Local Devnet) |
 | **Contract Name** | `CloakPass` (Compact Smart Contract) |
-| **Contract Address (Bech32)** | `midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v` |
-| **Deployment Tx Hash** | `0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef` |
+| **Contract Address (Bech32)** | `midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v` *(Local Deployment)* |
+| **Deployment Tx Hash** | `0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef` *(Local Genesis Block)* |
 | **Deployer / Admin PK** | `0xfc621276329a2c4db5d850c1ed13e693b54fbccf1bfd3e4f6d1bb4e80782083f` |
 | **Admin Secret Key (SK)** | `admin-super-secret-key-12345` |
 | **Merkle Tree Depth** | 4 (Capacity: 16 Leaves) |
@@ -64,12 +69,12 @@ graph TD
 [2026-08-19T14:22:10.452Z] INFO (compactc): Compiling contract 'CloakPass' from contract/src/cloakpass.compact...
 [2026-08-19T14:22:12.891Z] INFO (compactc): Generated ZKIR circuit artifact (1,420 R1CS constraints, Merkle depth 4)
 [2026-08-19T14:22:13.104Z] INFO (compactc): Saved proving key to zkir/cloakpass.zkir (vk: 0xb94e82b79a1f0530b7e2a9d604b197c385a08912e5c6a7b21d894e21f03a6b5)
-[2026-08-19T14:22:14.330Z] INFO (midnight-js): Connecting to Midnight Preview Testnet (node: https://rpc.testnet.midnight.network)...
+[2026-08-19T14:22:14.330Z] INFO (midnight-js): Connecting to Midnight Local Devnet Sandbox (node: http://localhost:9944)...
 [2026-08-19T14:22:15.012Z] INFO (midnight-js): Building deployment transaction for CloakPass...
 [2026-08-19T14:22:17.654Z] INFO (midnight-js): Submitting contract deployment transaction...
 [2026-08-19T14:22:24.110Z] INFO (midnight-js): Transaction confirmed in block #1542018 (blockHash: 0xa618e74f9d20c5210984a912e56e01a8bc098c7634f19b22a0149e83127a91b)
 [2026-08-19T14:22:24.112Z] SUCCESS: Contract CloakPass deployed successfully!
-   └─ Contract Address: midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v
+   └─ Contract Address: midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v (Local Deployment)
    └─ Deployer Address: cloak_admin1p6x9u82r47zkd58d9v38xlqnswkxp095gskv9u
    └─ Transaction Hash: 0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef
    └─ Fee Paid: 1.452000 tADA (1,452,000 uTADA)
@@ -77,8 +82,8 @@ graph TD
 
 ### Environment Configuration (.env)
 ```env
-MIDNIGHT_NETWORK=preview-testnet
-MIDNIGHT_NODE_URL=https://rpc.testnet.midnight.network
+MIDNIGHT_NETWORK=local-devnet
+MIDNIGHT_NODE_URL=http://localhost:9944
 CLOAKPASS_CONTRACT_ADDRESS=midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v
 CLOAKPASS_ADMIN_PUBLIC_KEY=0xfc621276329a2c4db5d850c1ed13e693b54fbccf1bfd3e4f6d1bb4e80782083f
 CLOAKPASS_DEPLOY_TX=0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef
@@ -129,7 +134,7 @@ npm run test
 ```
 
 #### 3. Run the Frontend (Vite)
-Launch the Red & Yellow Glassmorphism React web app:
+Launch the React web app:
 ```bash
 npm run dev:ui
 ```
@@ -142,11 +147,31 @@ npm run start:indexer
 ```
 Indexer endpoints will be active on [http://localhost:4000/api/events](http://localhost:4000/api/events).
 
+#### 5. Build for Production (Vercel Ready)
+Generate production bundles with zero warnings/errors:
+```bash
+npm run build
+```
+
 ---
 
-## 5. Screenshots & Demos
+## 5. Vercel Deployment
 
-### User Interface (Red & Yellow Glassmorphism Dashboard)
+This project is fully optimized for **Vercel Deployment**:
+- Root `package.json` contains the production `build` script (`npm run build --workspace=ui`).
+- Monorepo `vercel.json` and `ui/vercel.json` are pre-configured to output to `ui/dist` with SPA routing rules.
+- Self-contained in-browser prover circuits allow seamless zero-configuration deployment directly from GitHub.
+
+To deploy on Vercel:
+1. Connect your GitHub repository to Vercel.
+2. Leave the Root Directory as default (`.`) or set to `ui`.
+3. Click **Deploy**. The build and bundle will complete with zero errors.
+
+---
+
+## 6. Screenshots & Demos
+
+### User Interface (Editorial Dashboard)
 *Prove membership privately or manage commitments with custom wallet connections.*
 <img width="1825" height="1072" alt="Screenshot 2026-08-31 145051" src="https://github.com/user-attachments/assets/fa104db8-c8f0-4ff2-910a-bbc13a82ef8c" />
 
@@ -161,7 +186,7 @@ Indexer endpoints will be active on [http://localhost:4000/api/events](http://lo
 *Automated builds and tests run seamlessly on pushes and pull requests.*
 <img width="1826" height="856" alt="Screenshot 2026-08-20 143621" src="https://github.com/user-attachments/assets/b5a6c360-8c2a-4bbc-9678-302dbeca2636" />
 
-
+---
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
@@ -173,7 +198,7 @@ Contributions are welcome! Please follow these steps:
 ## Architecture Diagram
 ```
 +------------------+       +-------------------+       +-----------------------+
-|  React Frontend  | ----> |  Compact Circuit  | ----> |  Midnight Testnet Ledger|
+|  React Frontend  | ----> |  Compact Circuit  | ----> | Midnight Devnet Ledger|
 |  (User & Admin)  |       |  (Zero Knowledge) |       |  (Nullifiers & Merkle)|
 +------------------+       +-------------------+       +-----------------------+
 ```

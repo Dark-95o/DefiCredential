@@ -7,12 +7,14 @@
     "ui"
   ],
   "scripts": {
+    "build": "npm run build --workspace=ui",
     "compile": "npm run compile --workspace=contract",
     "compile:contract": "npm run compile --workspace=contract",
     "test": "npm test --workspace=contract && npm test --workspace=ui",
     "dev:ui": "npm run dev --workspace=ui",
     "start:indexer": "npm run start --workspace=indexer",
-    "lint": "npm run lint --workspace=ui"
+    "lint": "npm run lint --workspace=ui",
+    "preview": "npm run preview --workspace=ui"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

@@ -18,7 +18,7 @@ beforeAll(() => {
         writable: true,
         configurable: true
       });
-    } catch (e) {
+    } catch {
       (globalThis.crypto as any).randomUUID = () => 'mocked-uuid-1234-5678-90ab-cdef01234567';
     }
   }

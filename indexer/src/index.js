@@ -49,7 +49,8 @@ const db = {
     currentBlock: 1542312,
     targetBlock: 1542312,
     status: "Synced",
-    contractAddress: "cloak_contract1q95gskv9uxlqnswkxp095gskv9u3d2p7x92"
+    deployment: "Local Deployment (Sandbox Devnet)",
+    contractAddress: "midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v (Local Deployment)"
   }
 };
 

@@ -1,5 +1,5 @@
 // Memoized root dashboard controller for CloakPass dApp
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Shield, Wallet, Info, Sparkles, RefreshCw, Cpu, ShieldCheck, Lock, Server } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HeroVisualizer } from './components/HeroVisualizer';
@@ -7,7 +7,7 @@ import { MemberAccess } from './components/MemberAccess';
 import { AdminVault } from './components/AdminVault';
 import { Terminal } from './components/Terminal';
 import type { TerminalEvent } from './components/Terminal';
-import { CloakPassContract, hashValues, pad32 } from '../../contract/src/cloakpass';
+import { CloakPassContract, hashValues, pad32 } from './contracts/cloakpass';
 
 const ADMIN_SK = 'admin-super-secret-key-12345';
 const ADMIN_PK = hashValues([pad32('cloakpass:admin:v1'), ADMIN_SK]);
@@ -40,22 +40,22 @@ export default function App() {
   const [isVerified, setIsVerified] = useState(false);
   const [lastEventId, setLastEventId] = useState('');
 
-  // Handle wallet connection simulation
-  const connectWallet = () => {
-    setShowWalletModal(true);
-  };
+  // Structured logger
+  const logEvent = useCallback((type: 'access' | 'registration', details: string) => {
+    setTerminalEvents((prev) => {
+      const newEvent: TerminalEvent = {
+        id: Math.random().toString(),
+        blockNumber: 1542000 + prev.length * 3 + Math.floor(Math.random() * 3),
+        txHash: '0x' + crypto.randomUUID().replace(/-/g, '').substring(0, 40),
+        timestamp: new Date().toLocaleTimeString(),
+        type,
+        details
+      };
+      return [newEvent, ...prev.slice(0, 19)];
+    });
+  }, []);
 
-  const handleWalletSelect = async (type: 'lace' | 'freighter' | 'mock') => {
-    setShowWalletModal(false);
-    setWalletConnecting(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setWalletConnected(true);
-    setWalletConnecting(false);
-    setWalletType(type);
-    updateWalletState(type, walletRole);
-  };
-
-  const updateWalletState = (type: 'lace' | 'freighter' | 'mock' | null, role: 'admin' | 'user') => {
+  const updateWalletState = useCallback((type: 'lace' | 'freighter' | 'mock' | null, role: 'admin' | 'user') => {
     if (!type) return;
 
     if (type === 'lace') {
@@ -66,7 +66,7 @@ export default function App() {
         setWalletAddress('cloak_user1q3r4xk9v05gskv9uxlqnswkxp095gskv9u3d2p');
         setWalletBalance('520.40 tADA');
       }
-      logEvent('access', 'Connected to Lace Beta Wallet on Midnight Testnet.');
+      logEvent('access', 'Connected to Lace Beta Wallet on Midnight Devnet.');
     } else if (type === 'freighter') {
       if (role === 'admin') {
         setWalletAddress('GBADMINFreighterStellarPublicKeyX7V2R89P');
@@ -86,6 +86,21 @@ export default function App() {
       }
       logEvent('access', 'Connected to Mock Developer Simulator Wallet.');
     }
+  }, [logEvent]);
+
+  // Handle wallet connection simulation
+  const connectWallet = () => {
+    setShowWalletModal(true);
+  };
+
+  const handleWalletSelect = async (type: 'lace' | 'freighter' | 'mock') => {
+    setShowWalletModal(false);
+    setWalletConnecting(true);
+    await new Promise((r) => setTimeout(r, 1000));
+    setWalletConnected(true);
+    setWalletConnecting(false);
+    setWalletType(type);
+    updateWalletState(type, walletRole);
   };
 
   const disconnectWallet = () => {
@@ -99,19 +114,7 @@ export default function App() {
     if (walletConnected && walletType) {
       updateWalletState(walletType, walletRole);
     }
-  }, [walletRole, walletConnected, walletType]);
-
-  const logEvent = (type: 'access' | 'registration', details: string) => {
-    const newEvent: TerminalEvent = {
-      id: Math.random().toString(),
-      blockNumber: 1542000 + terminalEvents.length * 3 + Math.floor(Math.random() * 3),
-      txHash: '0x' + crypto.randomUUID().replace(/-/g, '').substring(0, 40),
-      timestamp: new Date().toLocaleTimeString(),
-      type,
-      details
-    };
-    setTerminalEvents((prev) => [newEvent, ...prev]);
-  };
+  }, [walletRole, walletConnected, walletType, updateWalletState]);
 
   const clearLedgerState = () => {
     cloakPassSim.commitments.leaves = cloakPassSim.commitments.leaves.map(
@@ -216,7 +219,7 @@ export default function App() {
             {/* Network Pill */}
             <div className="hidden sm:flex items-center gap-2 bg-[#F3EEE6] border border-[#E5DFD5] px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold text-[#57534E]">
               <span className="w-2 h-2 rounded-full bg-[#15803D]"></span>
-              Midnight Testnet
+              Midnight Local Devnet
             </div>
 
             {/* Wallet Button */}
@@ -298,7 +301,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Banner Right Technical Overview Grid (Replacing Image) */}
+            {/* Banner Right Technical Overview Grid */}
             <div className="lg:col-span-5 bg-[#F4EFE6] rounded-2xl p-6 border border-[#E5DFD5] space-y-4">
               <h3 className="text-xs font-bold uppercase tracking-wider text-[#57534E] flex items-center gap-2 border-b border-[#E5DFD5] pb-3">
                 <Server className="w-4 h-4 text-[#C2410C]" /> Protocol Specifications
@@ -321,6 +324,17 @@ export default function App() {
                   <span className="text-[10px] text-[#78716C] font-mono block">On-Chain State</span>
                   <span className="font-bold text-[#C2410C]">Immutable Nonce</span>
                 </div>
+              </div>
+
+              {/* Explicit Contract Address & Local Deployment Badge */}
+              <div className="bg-[#FFFDF9] p-3 rounded-xl border border-[#E5DFD5] space-y-1 text-xs font-mono">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-[#78716C] font-mono uppercase tracking-wider">Contract Address</span>
+                  <span className="text-[10px] bg-[#FEF3C7] text-[#92400E] px-2 py-0.5 rounded font-bold border border-[#FDE68A]">Local Deployment</span>
+                </div>
+                <span className="text-[11px] text-[#1C1917] font-bold block truncate" title="midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v">
+                  midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v
+                </span>
               </div>
 
               <div className="bg-[#FFFDF9] p-3.5 rounded-xl border border-[#E5DFD5] flex items-center justify-between text-xs font-mono">
@@ -476,7 +490,7 @@ export default function App() {
                   </div>
                   <div className="text-left">
                     <div className="text-xs font-bold text-[#1C1917] group-hover:text-[#C2410C] transition-colors">Lace Wallet</div>
-                    <span className="text-[10px] text-[#78716C] font-mono">Midnight Testnet</span>
+                    <span className="text-[10px] text-[#78716C] font-mono">Midnight Devnet</span>
                   </div>
                 </div>
                 <span className="text-[10px] text-[#C2410C] font-bold uppercase tracking-wider bg-[#FFFDF9] px-2.5 py-1 rounded border border-[#E5DFD5]">Connect</span>
@@ -530,4 +544,3 @@ export default function App() {
     </div>
   );
 }
-
