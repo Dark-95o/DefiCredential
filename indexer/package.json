@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "echo Indexer ready",
     "start": "node src/index.js"
   },
   "dependencies": {

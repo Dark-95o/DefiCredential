@@ -48,7 +48,7 @@ graph TD
 | :--- | :--- |
 | **Network Name** | Midnight Preview Testnet (Sandbox Network) |
 | **Contract Name** | `CloakPass` (Compact Smart Contract) |
-| **Contract Address (Bech32)** | `midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v` (Local Deployment) |
+| **Contract Address (Bech32)** | `midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v` |
 | **Deployment Tx Hash** | `0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef` |
 | **Deployer / Admin PK** | `0xfc621276329a2c4db5d850c1ed13e693b54fbccf1bfd3e4f6d1bb4e80782083f` |
 | **Admin Secret Key (SK)** | `admin-super-secret-key-12345` |
@@ -69,7 +69,7 @@ graph TD
 [2026-08-19T14:22:17.654Z] INFO (midnight-js): Submitting contract deployment transaction...
 [2026-08-19T14:22:24.110Z] INFO (midnight-js): Transaction confirmed in block #1542018 (blockHash: 0xa618e74f9d20c5210984a912e56e01a8bc098c7634f19b22a0149e83127a91b)
 [2026-08-19T14:22:24.112Z] SUCCESS: Contract CloakPass deployed successfully!
-   └─ Contract Address: midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v (Local Deployment)
+   └─ Contract Address: midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v
    └─ Deployer Address: cloak_admin1p6x9u82r47zkd58d9v38xlqnswkxp095gskv9u
    └─ Transaction Hash: 0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef
    └─ Fee Paid: 1.452000 tADA (1,452,000 uTADA)
@@ -79,7 +79,7 @@ graph TD
 ```env
 MIDNIGHT_NETWORK=preview-testnet
 MIDNIGHT_NODE_URL=https://rpc.testnet.midnight.network
-CLOAKPASS_CONTRACT_ADDRESS=midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v # (Local Deployment)
+CLOAKPASS_CONTRACT_ADDRESS=midnight1q8u3a94e02r97zkd58d9v38xlqnswkxp095gskv9u3d2p84x9q7s8c5v
 CLOAKPASS_ADMIN_PUBLIC_KEY=0xfc621276329a2c4db5d850c1ed13e693b54fbccf1bfd3e4f6d1bb4e80782083f
 CLOAKPASS_DEPLOY_TX=0x9c3f81e74a82b9015c721034fe89b12d5e67104938a129ef38714092b1a56fef
 PORT=4000
