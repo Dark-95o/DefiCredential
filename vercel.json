@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build --workspace=ui",
   "outputDirectory": "ui/dist",
   "framework": "vite",
   "rewrites": [
